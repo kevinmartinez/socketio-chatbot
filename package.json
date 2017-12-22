@@ -14,8 +14,7 @@
     "socket.io",
     "javascript",
     "css",
-    "html",
-    "handlebars"
+    "html"
   ],
   "author": "Kevin Martinez",
   "license": "ISC",
@@ -25,10 +24,14 @@
   "homepage": "https://github.com/kevinmartinez/socketio-chatbot#readme",
   "dependencies": {
     "express": "^4.16.2",
+    "express-react-views": "^0.10.4",
     "pug": "^2.0.0-rc.4",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "socket.io": "^2.0.4"
   },
   "devDependencies": {
-    "prettier": "^1.9.2"
+    "prettier": "^1.9.2",
+    "standard": "^10.0.3"
   }
 }
