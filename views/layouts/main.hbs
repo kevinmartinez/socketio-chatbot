@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Express handlebars</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300|Work+Sans">
+		<link rel="stylesheet" href="static/css/style.css">
+	</head>
+	<body>
+		{{> header}}
+		<header class="header header--main">
+			<h1 class="heading heading--main">
+			 iChat
+			</h1>
+		</header>
+			<section>
+			 <div class="phone-case">
+				 <ul class="chat-field">
+					 <li class="chat-field__box chat-field__box--cpu">
+						 <p class="chat-field__text chat-field__text--cpu">
+							 {{msg}}
+							</p>
+					 </li>
+					 <li class="chat-field__box chat-field__box--user">
+							<p class="chat-field__text chat-field__text--user">
+							 m
+							</p>
+					 </li>
+					 <li class="chat-field__box chat-field__box--cpu">
+						 <p class="chat-field__text chat-field__text--cpu">
+							 {{msg}}
+							</p>
+					 </li>
+					 <li class="chat-field__box chat-field__box--user">
+							<p class="chat-field__text chat-field__text--user">
+							 m
+							</p>
+					 </li>
+					 <li class="chat-field__box chat-field__box--cpu">
+						 <p class="chat-field__text chat-field__text--cpu">
+							 {{msg}}
+							</p>
+					 </li>
+					 <li class="chat-field__box chat-field__box--user">
+							<p class="chat-field__text chat-field__text--user">
+							 m
+							</p>
+					 </li>
+				 </ul>
+			 </div>
+			 <form action="" class="msg">
+				<input type="text" class="msg__input">
+				 <button class="msg_btn btn">Send</button>
+				</form>
+			</section>
+
+	<script src="/socket.io/socket.io.js"></script>
+	</body>
+</html>
