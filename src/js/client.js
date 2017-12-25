@@ -2,16 +2,17 @@ const socket = io()
 const bot = document.querySelector('.chat-field__box--cpu p')
 const chatField = document.querySelector('.chat-field')
 const user = document.querySelector('.chat-field__box--user p')
+const cpu = document.querySelector('.chat-field__text.chat-field__text--cpu')
 const userInput = document.querySelector('.msg__input')
 
 // make element param pick between user or cpu
-const createMessage = (element) => {
+const createMessage = (element, account) => {
   let li = document.createElement('li')
   let p = document.createElement('p')
   li.classList = 'chat-field__box chat-field__box--user'
   p.classList = 'chat-field__text chat-field__text--user'
 
-  if (element === 'li') {
+  if (element === u) {
     return li
   } else if (element === 'p') {
     return p
