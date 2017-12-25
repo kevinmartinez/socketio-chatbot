@@ -1,6 +1,4 @@
-import io from 'socket.io-client'
-
-const socket = io.connect('http://localhost:3030')
+const socket = io()
 const bot = document.querySelector('.chat-field__box--cpu p')
 const user = document.querySelector('.chat-field__box--user p')
 const userInput = document.querySelector('.msg__input')
