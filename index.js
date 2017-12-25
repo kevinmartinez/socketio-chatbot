@@ -26,9 +26,11 @@ app.get('/', function (request, response) {
 
 io.on('connection', (socket) => {
   socket.emit('hello', { message: 'woot' })
+
   socket.on('my other event', function (data) {
     console.log(data)
   })
+
   socket.on('event from input', (data) => {
     console.log(data)
     if (data.message === 'Why') {
