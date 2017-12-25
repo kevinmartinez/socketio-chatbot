@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const path = require('path')
 const http = require('http').Server(app)
 const io = require('socket.io')(http)
 const port = 3030
@@ -12,7 +13,7 @@ app.get('/', function (req, res) {
 })
 
 app.get('/', function (request, response) {
-  response.sendFile(__dirname + '/index')
+  response.sendFile(path.join(__dirname, 'index'))
 })
 
 // io.on('connection', (socket) => console.log('a user connected'))
