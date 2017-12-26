@@ -25,14 +25,15 @@ app.get('/', function (request, response) {
 // })
 
 io.on('connection', (socket) => {
-  socket.emit('hello', { message: 'woot' })
+  socket.emit('hello', { message: 'Welcome to iChat' })
 
   socket.on('my other event', function (data) {
-    console.log(data)
+    console.log('from "my other event: "', data)
   })
 
   socket.on('event from input', (data) => {
-    console.log(data)
+    console.log('from "event from input": ', data)
+    console.debug(data)
     if (data.message === 'Why') {
       socket.emit('response', {message: 'Why Not???'})
     } else if (data.message === 'Old?') {
