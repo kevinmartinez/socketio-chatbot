@@ -1,65 +1,44 @@
-const socket = io()
-const bot = document.querySelector('.chat-field__box--cpu p')
+const socket = io.connect('http://localhost:3030', {'forceNew': true})
 const chatField = document.querySelector('.chat-field')
-const user = document.querySelector('.chat-field__box--user p')
-const cpu = document.querySelector('.chat-field__text.chat-field__text--cpu')
+const btnSubmit = document.querySelector('.msg__btn.btn')
 const userInput = document.querySelector('.msg__input')
 
-// make element param pick between user or cpu
-const createMessage = (element, account) => {
-  let li = document.createElement('li')
-  let p = document.createElement('p')
-  // li.classList = 'chat-field__box chat-field__box--user'
-  // p.classList = 'chat-field__text chat-field__text--user'
-
-  if (element === 'li' && account === 'cpu') {
+const chatBox = (text, type) => {
+  const li = document.createElement('li')
+  if (type === 'cpu') {
     li.classList = 'chat-field__box chat-field__box--cpu'
-    return li
-  } else if (element === 'li' && account === 'user') {
+  } else if (type === 'user') {
     li.classList = 'chat-field__box chat-field__box--user'
-    return li
   }
-  if (element === 'p' && account === 'cpu') {
+  const p = document.createElement('p')
+  if (type === 'cpu') {
     p.classList = 'chat-field__text chat-field__text--cpu'
-    return p
-  } else if (element === 'p' && account === 'user') {
+  } else if (type === 'user') {
     p.classList = 'chat-field__text chat-field__text--user'
-    return p
   }
+  p.textContent = text
+  li.appendChild(p)
+  return li
+}
+socket.on('hello-from-cpu', (data) => {
+  console.log(data.message)
+})
+
+socket.on('cpu-answer', (data) => {
+  const answer = chatBox(data.answer, 'cpu')
+  chatField.appendChild(answer)
+  console.log(data)
+})
+
+socket.on('question', (data) => {
+  const question = chatBox(data.question, 'user')
+  chatField.appendChild(question)
+})
+
+function addMessage (event) {
+  event.preventDefault()
+  const payload = {question: userInput.value}
+  socket.emit('user-input', payload)
 }
 
-const li = createMessage('mo')
-
-console.log(li)
-
-const btnSubmit = document.querySelector('.msg__btn.btn')
-console.log(bot)
-socket.on('hello', function (data) {
-  const li = createMessage('li', 'cpu')
-  const p = createMessage('p', 'cpu')
-  p.textContent = data.message
-  li.appendChild(p)
-  chatField.appendChild(li)
-  // bot.textContent = data.message
-  console.log(data)
-  socket.emit('my other event', { my: 'data' })
-})
-btnSubmit.addEventListener('click', function (event) {
-  event.preventDefault()
-  const input = userInput.value
-  const li = createMessage('li', 'user')
-  const p = createMessage('p', 'user')
-  p.textContent = input
-  li.appendChild(p)
-  chatField.appendChild(li)
-  socket.emit('event from input', {message: input})
-  console.log(userInput.value)
-})
-socket.on('response', (data) => {
-  console.log('eeh', data)
-  const li = createMessage('li', 'cpu')
-  const p = createMessage('p', 'cpu')
-  p.textContent = data.message
-  li.appendChild(p)
-  chatField.appendChild(li)
-})
+btnSubmit.addEventListener('click', addMessage)
