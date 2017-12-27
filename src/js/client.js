@@ -6,6 +6,7 @@ const userInput = document.querySelector('.msg__input')
 const chatBox = (text, type) => {
   const li = document.createElement('li')
   if (type === 'cpu') {
+<<<<<<< HEAD
     li.classList = 'chat-field--cpu'
   } else if (type === 'user') {
     li.classList = 'chat__box--user'
@@ -15,6 +16,17 @@ const chatBox = (text, type) => {
     p.classList = 'chat__text chat__text--cpu'
   } else if (type === 'user') {
     p.classList = 'chat__text chat__text--user'
+=======
+    li.classList = 'chat-field__box chat-field__box--cpu'
+  } else if (type === 'user') {
+    li.classList = 'chat-field__box chat-field__box--user'
+  }
+  const p = document.createElement('p')
+  if (type === 'cpu') {
+    p.classList = 'chat-field__text chat-field__text--cpu'
+  } else if (type === 'user') {
+    p.classList = 'chat-field__text chat-field__text--user'
+>>>>>>> master
   }
   p.textContent = text
   li.appendChild(p)
