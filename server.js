@@ -10,6 +10,11 @@ app.set('view engine', 'pug')
 app.get('/', (req, res) => res.render('index'))
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index')))
 
+// Emit function
+const emitAnswer = (answer) => {
+  return io.sockets.emit('cpu-answer', {answer: answer})
+}
+
 io.sockets.on('connection', (socket) => {
   console.log('something connected to socket.io')
 
@@ -17,10 +22,22 @@ io.sockets.on('connection', (socket) => {
   socket.on('user-input', (data) => {
     io.sockets.emit('question', data)
     console.log(data.question)
-    if (data.question === 'moo') {
-      io.sockets.emit('cpu-answer', {answer: 'cow'})
-    } else {
-      io.sockets.emit('cpu-answer', {answer: 'lol'})
+    const userQuestion = data.question
+    switch (userQuestion) {
+      case 'moo':
+        emitAnswer('hello')
+        // io.sockets.emit('cpu-answer', {answer: 'cow'})
+        break
+      case 'age':
+        emitAnswer(34)
+        // io.sockets.emit('cpu-answer', {answer: '34'})
+        break
+      case 'hi':
+        emitAnswer('hello to you')
+        // io.sockets.emit('cpu-answer', {answer: '34'})
+        break
+      default:
+        break
     }
   })
 })
