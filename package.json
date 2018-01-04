@@ -11,6 +11,7 @@
     "url": "git+https://github.com/kevinmartinez/socketio-chatbot.git"
   },
   "keywords": [
+    "websockets",
     "socket.io",
     "javascript",
     "css",
