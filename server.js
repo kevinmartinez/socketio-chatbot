@@ -24,20 +24,29 @@ io.sockets.on('connection', (socket) => {
     console.log(data.question)
     const userQuestion = data.question
     switch (userQuestion) {
-      case 'moo':
+      case 'Hello':
         emitAnswer('hello')
         // io.sockets.emit('cpu-answer', {answer: 'cow'})
         break
-      case 'age':
-        emitAnswer(34)
+      case 'Why':
+        emitAnswer('Why not?')
         // io.sockets.emit('cpu-answer', {answer: '34'})
         break
-      case 'hi':
-        emitAnswer('hello to you')
+      case 'Time':
+        emitAnswer('Current time: ')
         // io.sockets.emit('cpu-answer', {answer: '34'})
+        break
+      case 'Yo':
+        emitAnswer('YoYo')
+        break
+      case 'Name':
+        emitAnswer('My name is CPU')
+        break
+      case '-help':
+        emitAnswer('I can answer the commands: "Hello", "Why", "Time", "Yo", "Name" and "-help"')
         break
       default:
-        break
+        emitAnswer('If you want a list of questions, please type "-help"')
     }
   })
 })
